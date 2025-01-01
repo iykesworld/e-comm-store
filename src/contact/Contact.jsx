@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './contact.css'
+import './Contact.css'
 import Pageheader from '../components/pageheader/Pageheader'
 
 const details = [
