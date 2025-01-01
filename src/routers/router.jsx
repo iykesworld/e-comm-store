@@ -7,7 +7,7 @@ import SingleProduct from "../shop/SingleProduct";
 import Blog from "../blog/Blog";
 import Singleblog from "../blog/Singleblog";
 import Search from "../search/Search";
-import Contact from "../contact/contact";
+import Contact from "../contact/Contact";
 import Login from "../components/login/Login";
 import Register from "../components/login/Register";
 
