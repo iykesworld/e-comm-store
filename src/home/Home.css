@@ -549,8 +549,16 @@
     .sub-title{
         text-align: center;
     }
+    .collection-arrows{
+        top: 200px;
+    }
 }
 @media (max-width:391px) {
+    .collection-arrows{
+        top: 200px;
+    }
+}
+@media (max-width:377px) {
     .collection-arrows{
         top: 200px;
     }

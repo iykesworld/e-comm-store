@@ -152,3 +152,9 @@
         color: var(--PR-white);
     }
 }
+@media (max-width:432px) {
+    .header{
+        padding: 10px 30px;
+        
+    }
+}

@@ -27,7 +27,7 @@ const Collections = () => {
         <h1>LATEST COLLECTIONS</h1>
         <p>Embrace the essence of effortless style and unmatched comfort
         with our collection</p>
-        <div className="arrows">
+        <div className="arrows collection-arrows">
         <i className= "ri-arrow-right-line collection-arrows"  onClick={handleNext}></i>
         <i className="ri-arrow-left-line collection-arrows" onClick={handlePrev}></i>
       </div>
