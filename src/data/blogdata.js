@@ -1,14 +1,17 @@
+import blog_img1a from '../assets/blog-image1.png'
+import blog_img1b from '../assets/blog-image1b.png'
+import blog_img1c from '../assets/blog-image1c.png'
 const BlogList = [
     {
         id: 1,
-        imgUrl: "/src/assets/blog-image1.png",
+        imgUrl: blog_img1a,
         imgAlt: "blog image",
         title: "Why Limited Edition Fashion Is the Future",
         desc: "UI and UX help you create an interactive website that has a flow to it, which makes it easier for the users to navigate the pages and search for the content",
         date: "20th Oct, 2024",
         name: "Iykes Design",
-        imgUrl2: "/src/assets/blog-image1b.png",
-        imgUrl3: "/src/assets/blog-image1c.png"
+        imgUrl2: blog_img1b,
+        imgUrl3: blog_img1c,
     },
     {
         id: 2,

@@ -1,11 +1,14 @@
 import React from 'react'
 import './Home.css'
 import { Link } from 'react-router-dom';
+import blog_image1 from '../assets/blog-image1.png'
+import blog_image2 from '../assets/blog-image2.png'
+import blog_image3 from '../assets/blog-image3.png'
 
 const postList = [
     {
         id: 1,
-        imgurl: 'src/assets/blog-image1.png',
+        imgurl: blog_image1,
         imgAlt: 'blog image',
         title:  'How to recreate their iconic looks with Iykes Designs Style and accessories ',
         sub: 'Read More',
@@ -13,7 +16,7 @@ const postList = [
     },
     {
         id: 2,
-        imgurl: 'src/assets/blog-image2.png',
+        imgurl: blog_image2,
         imgAlt: 'blog image',
         title:  'How to recreate their iconic looks with Iykes Designs Style and accessories ',
         sub: 'Read More',
@@ -21,7 +24,7 @@ const postList = [
     },
     {
         id: 3,
-        imgurl: 'src/assets/blog-image3.png',
+        imgurl: blog_image3,
         imgAlt: 'blog image',
         title:  'How to recreate their iconic looks with Iykes Designs Style and accessories ',
         sub: 'Read More',
