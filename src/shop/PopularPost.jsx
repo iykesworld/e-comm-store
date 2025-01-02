@@ -1,29 +1,33 @@
 import React from 'react'
 import './Shop.css'
 import { Link } from 'react-router-dom'
+import popular_img1 from '../assets/blog-card04.png'
+import popular_img2 from '../assets/blog-card05.png'
+import popular_img3 from '../assets/blog-card06.png'
+import popular_img4 from '../assets/blog-card07.png'
 
 const blogList = [
     {
         id: 1,
-        imgurl: '/src/assets/blog-card04.png',
+        imgurl: popular_img1,
         imgAlt: 'blog image',
         title: 'People share their experience with the Iphone 16 Apple Launch',
     },
     {
         id: 2,
-        imgurl: '/src/assets/blog-card05.png',
+        imgurl: popular_img2,
         imgAlt: 'blog image',
         title: 'Unemployment Looms in Africa and across the world',
     },
     {
         id: 3,
-        imgurl: '/src/assets/blog-card06.png',
+        imgurl: popular_img3,
         imgAlt: 'blog image',
         title: 'People share their experience with the Iphone 16 Apple Launch',
     },
     {
         id: 4,
-        imgurl: '/src/assets/blog-card07.png',
+        imgurl: popular_img4,
         imgAlt: 'blog image',
         title: 'Unemployment Looms in Africa and across the world',
     },
