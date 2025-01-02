@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import "./Shop.css";
 import Ratings from "../components/ratings/Ratings";
+import descImg from '../assets/descImage.webp'
+import reviewImg1 from '../assets/review1.svg'
+import reviewImg2 from '../assets/review2.svg'
+import reviewImg3 from '../assets/review3.svg'
 
 const reviewData = [
   {
-    imgUrl: "/src/assets/review1.svg",
+    imgUrl: reviewImg1,
     imgAlt: "review image",
     name: "Ngozi Ashley",
     date: "Posted on August 20, 2024",
     desc: "I highly recommend this business. Their customer service is second to none. The ambiance here is always inviting and comfortable.",
   },
   {
-    imgUrl: "/src/assets/review2.svg",
+    imgUrl: reviewImg2,
     imgAlt: "review image",
     name: "Emeka Okafor",
     date: "Posted on January 15, 2024",
     desc: "The product quality is consistently outstanding, exceeding my expectations every time. Pricing is fair and transparent - definitely value for money.",
   },
   {
-    imgUrl: "/src/assets/review3.svg",
+    imgUrl: reviewImg3,
     imgAlt: "review image",
     name: "John Smith",
     date: "Posted on January 15, 2024",
@@ -126,7 +130,7 @@ const Review = () => {
               </li>
             </div>
             <div className="description-middile-image-wrapper">
-              <img src="/src/assets/descImage.webp" alt="" />
+              <img src={descImg} alt="description image" />
             </div>
           </div>
           <div className="description-bottom">
