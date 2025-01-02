@@ -3,30 +3,34 @@ import './Blog.css'
 import Pageheader from '../components/pageheader/Pageheader'
 import blogdata from '../data/blogdata'
 import { Link, useParams } from 'react-router-dom'
+import popularBlog_img1 from '../assets/blog-image1c.png'
+import popularBlog_img2 from '../assets/blog-image2c.png'
+import popularBlog_img3 from '../assets/blog-image3c.png'
+import popularBlog_img4 from '../assets/blog-image4c.png'
 
 
 const blogList = [
     {
         id: 1,
-        imgurl: '/src/assets/blog-image1c.png',
+        imgurl: popularBlog_img1,
         imgAlt: 'blog image',
         title: 'People share their experience with the Iphone 16 Apple Launch',
     },
     {
         id: 2,
-        imgurl: '/src/assets/blog-image2c.png',
+        imgurl: popularBlog_img2,
         imgAlt: 'blog image',
         title: 'Unemployment Looms in Africa and across the world',
     },
     {
         id: 3,
-        imgurl: '/src/assets/blog-image3c.png',
+        imgurl: popularBlog_img3,
         imgAlt: 'blog image',
         title: 'People share their experience with the Iphone 16 Apple Launch',
     },
     {
         id: 4,
-        imgurl: '/src/assets/blog-image4c.png',
+        imgurl: popularBlog_img4,
         imgAlt: 'blog image',
         title: 'Unemployment Looms in Africa and across the world',
     },
