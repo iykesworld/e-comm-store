@@ -1,16 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Shop.css'
 import { Link } from 'react-router-dom';
+import { useFetchAllProductsQuery } from '../redux/feature/products/productsApi';
 
-const Searched = ({products}) => {
+const Searched = ({onSearch}) => {
     const [searchTerm, setSearchTerm] = useState("");
-    const filteredProducts = products.filter((product)=>{
-        return product.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const [debounceTerm, setDebounceTerm] = useState("searchTerm");
+
+    // Debounce search input to avoid frequent API calls
+
+    useEffect(()=>{
+        const timeoutId = setTimeout(()=>{
+            setDebounceTerm(searchTerm);
+            if (onSearch) onSearch(searchTerm);
+        }, 500); //Delay search by 500ms
+        return ()=> clearTimeout(timeoutId);
+    }, [searchTerm, onSearch]);
+
+    // fetch products based on the search term
+    const { data, isLoading } = useFetchAllProductsQuery({
+        search: debounceTerm,
+        page: 1,
+        limit: 16,
     });
+
+    const filteredProducts = data? data.products : [];
   return (
     <div className='searched'>
-        <form className='search-form'>
-            <input type="text" name='search' id='search' placeholder='search...' defaultValue={searchTerm} 
+        <form className='search-form' onSubmit={(e) => e.preventDefault()}>
+            <input type="text" name='search' id='search' placeholder='search...' value={searchTerm} 
             onChange={(e)=> setSearchTerm(e.target.value)}
             />
             <button type='submit'>
@@ -18,8 +36,9 @@ const Searched = ({products}) => {
             </button>
         </form>
         <div className='product-image-container'>
+        {isLoading && <p>Loading...</p>}
             {
-                searchTerm && filteredProducts.map((product)=>{
+                searchTerm && !isLoading && filteredProducts.map((product)=>{
                     return <Link key={product.id} to={`/shop/${product.id}`} className='filtered-link-wrapper' >
                         <div className='product-image-wrapper'>
                             <img src={product.image} alt="product image" />

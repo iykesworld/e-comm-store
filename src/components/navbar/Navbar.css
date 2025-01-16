@@ -53,7 +53,7 @@
     display: flex;
     gap: 30px;
 }
-.header-icons button{
+.header-icon-btn{
     background-color: transparent;
     outline: none;
     border: none;
@@ -62,7 +62,7 @@
     cursor: pointer;
     position: relative;
 }
-.header-icons button::before{
+.header-icon-btn::before{
     content: '';
     position: absolute;
     top: 100%;
@@ -71,7 +71,7 @@
     height: 2px;
     background: var(--SEC-white);
 }
-.header-icons button:hover::before{
+.header-icon-btn:hover::before{
     width: 80%;
     transition: 0.3s;
 }
@@ -92,6 +92,44 @@
 }
 .menu-icon{
     display: none;
+}
+.profileImage{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+/* dropdown */
+.dropdown{
+    position: absolute;
+    right: 10%;
+    z-index: 50;
+    padding: 10px;
+    background-color: var(--PR-white);
+    border-radius: 10px;
+    margin-top: 10px;
+
+}
+.dropdown-list li{
+    list-style: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.dropDownItems{
+    color: var(--PR-black);
+    font-weight: 600;
+    transition: 0.3s;
+}
+.dropDownItems:hover{
+    color: var(--Accent);
+}
+.dropdown-btn{
+    background-color: var(--SEC-white);
+    width: 100%;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
 }
 
 

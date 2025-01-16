@@ -1,16 +1,18 @@
 import React from 'react'
 import './Ratings.css'
 
-const Ratings = () => {
+const Ratings = ({rating}) => {
+  const stars = [];
+  for(let i =1; i<= 5; i++){
+    stars.push(
+    <span key={i} >
+      <i className={`ri-star${i<=rating? '-fill' : '-line'}`}></i></span>)
+  }
   return (
     <>
-        <span className='rating'>
-        <i className="ri-star-fill"></i>
-        <i className="ri-star-fill"></i>
-        <i className="ri-star-fill"></i>
-        <i className="ri-star-fill"></i>
-        <i className="ri-star-fill"></i>
-        </span>
+        <div className='rating'>
+        {stars}
+        </div>
     </>
   )
 }

@@ -1,22 +1,28 @@
 import React from 'react'
 import './Shop.css'
 
-const Pagination = ({productPerPage,totalProducts,paginate,activePage}) => {
+const Pagination = ({productPerPage,totalProduct,paginate,activePage}) => {
     const pageNumbers = [];
-    for(let i =1; i<=Math.ceil(totalProducts / productPerPage); i++){
-        pageNumbers.push(i)
-    };
+    const totalPages = Math.ceil(totalProduct / productPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
 
   return (
     <ul className='pagination'>
         <li className='paginate-arrow'>
-            <a  onClick={()=>{
+            <button
+            disabled={activePage ===1}
+              onClick={()=>{
                 if(activePage > 1){
                     paginate(activePage - 1)
                 }
-            }}>
+            }}
+            // aria-disabled={activePage === 1 ? 'true' : 'false'}
+            >
             <i className="ri-arrow-left-s-line"></i>
-            </a>
+            </button>
         </li>
         {
             pageNumbers.map((number)=>{
@@ -26,13 +32,17 @@ const Pagination = ({productPerPage,totalProducts,paginate,activePage}) => {
             })
         }
         <li className='paginate-arrow'>
-            <a  onClick={()=>{
+            <button
+            disabled={activePage ===totalProduct}
+              onClick={()=>{
                 if(activePage < pageNumbers.length){
                     paginate(activePage + 1)
                 }
-            }}>
+            }}
+            // aria-disabled={activePage === pageNumbers.length ? 'true' : 'false'}
+            >
             <i className="ri-arrow-right-s-line"></i>
-            </a>
+            </button>
         </li>
     </ul>
   )

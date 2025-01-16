@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useRegisterUserMutation } from '../../redux/feature/auth/authApi';
 
 const Register = () => {
     const [message, setMessage] = useState("");
@@ -8,32 +9,42 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = async (e) =>{
+    const [registerUser, {isLoading}] = useRegisterUserMutation();
+    const navigate = useNavigate();
+
+    const handleRegister = async (e) =>{
         e.preventDefault();
         const data = {
             username,
             email,
             password
         };
-        console.log(data);
+        try {
+            await registerUser(data).unwrap();
+            alert('Registration successful. Please login now.');
+            navigate('/login');
+        } catch (error) {
+            setMessage('Failed to register')
+            alert('Registration failed')
+        }
     }
   return (
     <div className='login'>
         <h2>Please Register</h2>
-        <form onClick={handleLogin} action="" className='login-content'>
+        <form onSubmit={handleRegister} action="" className='login-content'>
             <input type="username" placeholder='Username' 
-            name='username' id='username' required 
+            value={username} required 
             onChange={(e)=> setUsername(e.target.value)} />
             <input type="email" placeholder='Email Address' 
-            name='email' id='email' required 
+            value={email} required 
             onChange={(e)=> setEmail(e.target.value)} />
             <input type="password" placeholder='Password' 
-            name='password' id='password' required 
+            value={password} required 
             onChange={(e)=> setPassword(e.target.value)} />
             {
-                message && <p>{message}</p>
+                message && <p className='error-message'>{message}</p>
             }
-            <button type='submit'>Login</button>
+            <button type='submit'>Register</button>
         </form>
         <div className="login-bottom">
             <p>Already have an account? Please <Link to="/login" className='login-register-link'>Login</Link></p>

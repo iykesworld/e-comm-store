@@ -2,69 +2,84 @@ import React, { useEffect, useState } from 'react'
 import './Shop.css'
 import Pageheader from '../components/pageheader/Pageheader'
 import { Link, useParams } from 'react-router-dom';
-import productData from '../data/products.json'
 import Ratings from '../components/ratings/Ratings';
 import Review from './Review';
 import PopularPost from './PopularPost';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/feature/cart/cartSlice'
+import { useFetchProductByIdQuery } from '../redux/feature/products/productsApi';
 
 const SingleProduct = () => {
     const [preQuantity, setPreQuantity] = useState(1);
     const [coupon, setCoupon] = useState("");
     const [size, setSize] = useState("");
     const [color, setColor] = useState("Select Color");
-    const [product, setProduct] = useState(null);
-    useEffect(()=>{
-        window.scrollTo(0,0)
-    })
     const {id} = useParams();
     const dispatch = useDispatch();
-    const handleAddToCardt = (product) =>{
-        dispatch(addToCart(product))
-    }
-    useEffect(()=>{
-        const productItem = productData.find((p)=> p.id === parseInt(id));
-        setProduct(productItem)
-    },[id])
+
+    const { data, isLoading, error } = useFetchProductByIdQuery(id);
+    const product = data?.product || {};
+    const productReview = data?.reviews || {};
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart({
+            ...product,
+            quantity: preQuantity,
+            size,
+            color,
+            totalPrice: product.price * preQuantity,
+        }));
+    };
 
     const handleSizeChange = (e)=>{
         setSize(e.target.value);
     }
+
     const handleColorChange = (e)=>{
         setColor(e.target.value);
-    }
-    const handleDecrease = ()=>{
-        if(preQuantity > 1){
-            setPreQuantity(preQuantity - 1)
-        }
-    }
-    const handleIncrease = ()=>{
-        setPreQuantity(preQuantity +1);
     } 
+
     const handleSubmit = (e)=>{
         e.preventDefault();
     }
-    
+
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    }, [id]);
+
+    if (isLoading) {
+        return <div className="loading-spinner">Loading product details...</div>;
+    }
+
+    if (error) {
+        return <div className="error-message">Failed to load product. Please try again later.</div>;
+    }
+
+    if (!product) {
+        return <div className="no-product">Product not found.</div>;
+    }
+    if (!id) {
+        return <div className="error-message">Invalid Product ID in URL.</div>;
+      }
+
   return (
     <>
-    <Pageheader title= 'Single Product Page' currentPage = 'Shop' />
+    <Pageheader title= 'Single Product Page' currentPage = {product?.name} />
     <div className='single-product'>
         <div className='Single-product-left-wrapper' >
             <div className="single-product-left">
-                {
-                    product ? (
                         <div className='product-wrapper'>
                             <div className='single-product-image-wrapper'>
-                            <img src={product.image} alt="" />
+                            <img src={product?.image} alt="" />
                             </div>
                             <div className='single-product-details'>
-                                <h4>{product.name}</h4>
+                                <h4>{product?.name}</h4>
                                 <div className="single-product-rating">
-                                <Ratings/>
+                                <Ratings rating={product?.rating}/>
                                 </div>
-                                <h4>${product.price}</h4>
-                                <span>{product.description}</span>
+                                <h4>${product?.price.toFixed(2)}</h4>
+                                <span>{product?.description}</span>
                                 <div className='single-product-form'>
                                     <form onSubmit={handleSubmit}>
                                     <div className="input-wrapper">
@@ -95,7 +110,7 @@ const SingleProduct = () => {
                                         <div className='single-product-button'>
                                             <button onClick={(e)=>{
                                             e.stopPropagation();
-                                            handleAddToCardt(product)}}>Add to Cart</button>
+                                            handleAddToCart(product)}}>Add to Cart</button>
                                             <Link to="/cart-page" className='check-out-button'>
                                             <span>Check Out</span>
                                             </Link>
@@ -104,15 +119,10 @@ const SingleProduct = () => {
                                 </div>
                             </div>
                         </div>
-                    ) : (
-                        <p>
-                            product not found
-                        </p>
-                    )
-                }
+                      
                 </div>
                 <div className="single-product-review">
-                    <Review/>
+                    <Review productReview ={productReview}/>
                 </div>
         </div>
         <div className="single-product-right">

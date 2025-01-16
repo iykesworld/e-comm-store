@@ -1,23 +1,25 @@
 import React from 'react'
 import './Shop.css'
-import data from '../data/products.json'
 
-const ShopCategory = ({filtereItem,setItem,menuItem,setProducts,selectedCategory}) => {
+const ShopCategory = ({selectedCategory, filterByCategory}) => {
+    const categories = ['All', 'Shoes', 'Cowgirl hat', 'Jackets', 'Cap', 'Shorts', 'Midi Dresses', 'Pants', 'Hoodies', 'Bags', 'Mini Dresses', 'Hot Right Now', 'New Arrivals', 'Latest Collections'];
   return (
     <div className='shop-category'>
         <div className='shop-category-header'>
         <h5>All Categories</h5>
         </div>
-        <div className='shopcategory-wrapper'>
-            <button onClick={()=> setProducts(data)} >All</button>
+        <ul className='shopcategory-wrapper'>
             {
-                menuItem.map((val, id)=>{
-                    return <button key={id} onClick={()=> filtereItem(val)}>
-                        {val}
-                    </button>
+                categories.map((category)=>{
+                    return <li 
+                    key={category} 
+                    className={selectedCategory === category ? 'active' : ''}
+                    onClick={()=> filterByCategory(category)}>
+                        {category}
+                    </li>
                 })
             }
-        </div>
+        </ul>
     </div>
   )
 }
