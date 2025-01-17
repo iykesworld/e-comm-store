@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import avatar from '../assets/avatar.png'
 import { formatDate } from "../utils/formatDate";
 import Ratings from "../components/ratings/Ratings";
-import PostAReview from "./postAreview";
+import PostAReview from "./PostAReview";
+
 
 
 
