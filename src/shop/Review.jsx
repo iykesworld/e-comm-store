@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import avatar from '../assets/avatar.png'
 import { formatDate } from "../utils/formatDate";
 import Ratings from "../components/ratings/Ratings";
-import PostAReview from "./PostAReview";
+import PostReviews from "./PostReviews";
 
 
 
@@ -56,7 +56,7 @@ const Review = ({ productReview }) => {
         <button onClick={handleOpenReviewModal}>Add A Review</button>
       </div>
       {/* review modal */}
-      <PostAReview isModalOpen={isModalOpen} handleCloseReviewModal={handleCloseReviewModal} />
+      <PostReviews isModalOpen={isModalOpen} handleCloseReviewModal={handleCloseReviewModal} />
     </div>
   );
 };
