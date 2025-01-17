@@ -11,11 +11,11 @@ import Contact from "../contact/Contact";
 import Login from "../components/login/Login";
 import Register from "../components/login/Register";
 import PrivateRouter from "./PrivateRouter";
-import AdminLayout from "../admin/users/adminLayout";
 import Dashboard from "../admin/dashboard/Dashboard";
 import AddNewProducts from "../admin/addNewProducts/AddNewProducts";
 import ManageProducts from "../admin/manageItems/ManageProducts";
 import ManageUsers from "../admin/manageUsers/ManageUsers";
+import AdminUserLayout from "../admin/users/AdminUserLayout";
 
 const router = createBrowserRouter([
   {
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard/admin",
-    element: <PrivateRouter><AdminLayout/></PrivateRouter>,
+    element: <PrivateRouter><AdminUserLayout/></PrivateRouter>,
     children: [
       {
         path: '',

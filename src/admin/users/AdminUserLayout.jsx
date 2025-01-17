@@ -3,9 +3,8 @@ import AdminNavigaton from './AdminNavigaton'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-const AdminLayout = () => {
-
-    const {user} = useSelector((state)=> state.auth);
+const AdminUserLayout = () => {
+    const {user} = useSelector((state)=>state.auth);
     if(!user || user.role !== 'admin'){
         return <Navigate to='/login'/>
     }
@@ -17,4 +16,4 @@ const AdminLayout = () => {
   )
 }
 
-export default AdminLayout
+export default AdminUserLayout
